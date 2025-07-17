@@ -7,17 +7,18 @@ function NavBar() {
       <NavLink exact to="/" activeClassName="active-link">
         Home
       </NavLink>
-      <NavLink exact to="/movies" activeClassName="active-link">
-        Movies
+      <NavLink exact to="/search" activeClassName="active-link">
+        Search
       </NavLink>
-      <NavLink exact to="/directors" activeClassName="active-link">
-        Directors
+      <NavLink exact to="/sort" activeClassName="active-link">
+        Sort
       </NavLink>
-      <NavLink exact to="/actors" activeClassName="active-link">
-        Actors
+      <NavLink exact to="/reading-list" activeClassName="active-link">
+        Reading List
       </NavLink>
     </div>
   );
 }
 
 export default NavBar;
+
