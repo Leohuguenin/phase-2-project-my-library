@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Route, useRouteMatch } from "react-router-dom";
 import BookList from "./BookList";
+import BookInfo from "./BookInfo";
 import Search from "./Search";
 import Sort from "./Sort";
 
 function Home() {
     const [books, setBooks] = useState([]);
+    const match = useRouteMatch();
 
     useEffect(() => {
         fetch("https://www.googleapis.com/books/v1/volumes?q=a")
@@ -24,8 +26,14 @@ function Home() {
             <p>Discover new books, manage your reading list, and explore your next favorite read.</p>
             <Search />
             <Sort />
-            <BookList books={books} />
-            
+
+            <Route exact path={match.url}>
+                <BookList books={books} />
+            </Route>
+
+            <Route path={`${match.url}/books/:bookId`}>
+                <BookInfo />
+            </Route>
         </div>
     );
 }
