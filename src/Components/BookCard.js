@@ -10,7 +10,7 @@ function BookCard({ book }) {
                 alt={book.volumeInfo.title}
             />
             <Link to={`/books/${book.id}`}>
-                <h3>{book.volumeInfo.title.length > 60 ? book.volumeInfo.title.slice(0, 60) + "..." : book.volumeInfo.title}</h3>
+                <h4>{book.volumeInfo.title.length > 60 ? book.volumeInfo.title.slice(0, 60) + "..." : book.volumeInfo.title}</h4>
             </Link>
         </div>
     );

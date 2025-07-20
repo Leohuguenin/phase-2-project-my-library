@@ -9,8 +9,6 @@ function ReadingList({ readingList, onRemoveFromReadingList }) {
             <button onClick={() => onRemoveFromReadingList(book)} >Remove</button>
             </>
             )}
-            
-            
         </div>
     )
 }
