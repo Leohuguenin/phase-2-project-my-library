@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+.main-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.book-list {
+  flex: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.book-info {
+  flex: 1;
+  border-left: 1px solid #ccc;
+  padding-left: 16px;
+}

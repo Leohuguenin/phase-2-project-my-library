@@ -8,7 +8,6 @@ import Sort from "./Sort";
 function Home() {
     const [books, setBooks] = useState([]);
     const match = useRouteMatch();
-    console.log(match.url);
 
 
     useEffect(() => {
@@ -28,10 +27,12 @@ function Home() {
             <p>Discover new books, manage your reading list, and explore your next favorite read.</p>
             <Search />
             <Sort />
-            <BookList books={books} />
-            <Route path={`${match.url}/:bookId`}>
-                <BookInfo books={books} />
-            </Route>
+            <div className="main-content">
+                <BookList books={books} />
+                <Route path={`${match.url}/:bookId`}>
+                    <BookInfo books={books} />
+                </Route>
+            </div>
 
         </div>
     );
