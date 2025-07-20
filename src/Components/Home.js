@@ -8,6 +8,10 @@ import Sort from "./Sort";
 function Home() {
     const [books, setBooks] = useState([]);
     const match = useRouteMatch();
+    const [searchTerm, setSearchTerm] = useState("");
+    let filteredBooks = books.filter(book =>
+        book.volumeInfo.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
 
     useEffect(() => {
@@ -21,18 +25,22 @@ function Home() {
             });
     }, []);
 
+    function handleSearchChange(e) {
+        setSearchTerm(e.target.value);
+    }
+
     return (
         <div className="home-container">
             <h1>Welcome to MyLibrary</h1>
             <p>Discover new books, manage your reading list, and explore your next favorite read.</p>
             <div className="search-sort-bar">
-                <Search />
+                <Search onSearchChange={handleSearchChange} />
                 <Sort />
             </div>
             <div className="main-content">
-                <BookList books={books} />
+                <BookList books={filteredBooks} />
                 <Route path={`${match.url}/:bookId`}>
-                    <BookInfo books={books} />
+                    <BookInfo books={filteredBooks} />
                 </Route>
             </div>
 
