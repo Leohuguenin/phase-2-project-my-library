@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
 function BookInfo({ books, onAddToReadingList }) {
     const { bookId } = useParams();
     const book = books.find(b => b.id === bookId);
-
+    const [isAdded, setIsAdded] = useState(false);
+    
     if (!book) {
         return <p>Book not found or loading...</p>;
     }
 
     const info = book.volumeInfo;
+
+    function handleAddButton() {
+        onAddToReadingList(book);
+        setIsAdded(!isAdded);
+    }
 
 
     return (
@@ -24,7 +30,8 @@ function BookInfo({ books, onAddToReadingList }) {
                     <p><strong>Published date:</strong> {info.publishedDate}</p>
                     <p><strong>Number of pages:</strong> {info.pageCount}</p>
                     <p><strong>Category:</strong> {info.categories?.join(", ")}</p>
-                    <button onClick={() => onAddToReadingList(book)} >Add to reading list</button>
+                    {isAdded? <p>Added to Reading list!</p> :
+                    <button onClick={handleAddButton} >Add to reading list</button>}
                 </div>
             </div>
         </div>
