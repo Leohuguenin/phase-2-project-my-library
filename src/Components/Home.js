@@ -25,8 +25,10 @@ function Home() {
         <div className="home-container">
             <h1>Welcome to MyLibrary</h1>
             <p>Discover new books, manage your reading list, and explore your next favorite read.</p>
-            <Search />
-            <Sort />
+            <div className="search-sort-bar">
+                <Search />
+                <Sort />
+            </div>
             <div className="main-content">
                 <BookList books={books} />
                 <Route path={`${match.url}/:bookId`}>

@@ -4,7 +4,7 @@ function Sort() {
     return (
         <div className="sort-container">
             <h4>🔼 Sort books</h4>
-            <select>
+            <select className="sort-select">
                 <option value="All">All</option>
                 <option value="Genre">Genre</option>
                 <option value="Author">Author</option>

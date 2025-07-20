@@ -8,6 +8,7 @@ function Search() {
                 <input
                     type="text"
                     placeholder="Enter book title"
+                    className="search-input"
                 />
             </form>
         </div>
