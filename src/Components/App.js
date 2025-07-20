@@ -32,7 +32,7 @@ function App() {
     <div>
       <NavBar />
       <Switch>
-        <Route path="/books" render={() => <Home onAddToReadingList={addToReadingList} />} />
+        <Route path="/books" render={() => <Home onAddToReadingList={addToReadingList} readingList={readingList}  />} />
         <Route path="/reading-list" render={() => <ReadingList readingList={readingList} />} />
         <Route path="*">
           <h2>Page not found</h2>
