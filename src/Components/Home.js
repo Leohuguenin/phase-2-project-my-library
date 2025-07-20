@@ -14,7 +14,7 @@ function Home() {
         fetch("https://www.googleapis.com/books/v1/volumes?q=a")
             .then(res => res.json())
             .then(data => {
-                setBooks(data.items.slice(0, 6));
+                setBooks(data.items.slice(0, 10));
             })
             .catch(err => {
                 console.error("Error fetching books:", err);
