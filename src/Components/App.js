@@ -27,13 +27,21 @@ function App() {
       setReadingList([...readingList, book]);
     }
   }
+
+  function removeFromReadingList(book) {
+    setReadingList(readingList.filter(item => item.id !== book.id))
+  }
   
   return (
     <div>
       <NavBar />
       <Switch>
-        <Route path="/books" render={() => <Home onAddToReadingList={addToReadingList} readingList={readingList}  />} />
-        <Route path="/reading-list" render={() => <ReadingList readingList={readingList} />} />
+        <Route path="/books" render={() => <Home 
+        onAddToReadingList={addToReadingList} 
+        readingList={readingList}  />} />
+        <Route path="/reading-list" render={() => <ReadingList
+         readingList={readingList} 
+         onRemoveFromReadingList={removeFromReadingList}/>} />
         <Route path="*">
           <h2>Page not found</h2>
         </Route>
