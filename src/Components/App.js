@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import NavBar from "./NavBar";
 import Home from "./Home";
@@ -10,6 +10,17 @@ import ReadingList from "./ReadingList";
 function App() {
   
   const [readingList, setReadingList] = useState([]);
+
+  useEffect(() => {
+    const savedList = JSON.parse(localStorage.getItem("readingList")) || [];
+    setReadingList(savedList);
+  }, []);
+  
+  useEffect(() => {
+    localStorage.setItem("readingList", JSON.stringify(readingList));
+  }, [readingList]);
+  
+
 
   function addToReadingList(book) {
     if (!readingList.find(item => item.id === book.id)) {

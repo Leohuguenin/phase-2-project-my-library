@@ -5,12 +5,13 @@ function BookInfo({ books, onAddToReadingList }) {
     const { bookId } = useParams();
     const book = books.find(b => b.id === bookId);
     const [isAdded, setIsAdded] = useState(false);
+    const info = book.volumeInfo;
     
     if (!book) {
         return <p>Book not found or loading...</p>;
     }
 
-    const info = book.volumeInfo;
+    
 
     function handleAddButton() {
         onAddToReadingList(book);
