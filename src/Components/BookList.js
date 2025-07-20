@@ -7,7 +7,7 @@ function BookList({ books }) {
         <>
             <h2>Featured Books</h2>
             <div className="book-list">
-                {books.map(book => <BookCard book={book}/>
+                {books.map(book => <BookCard key={book.id} book={book}/>
                 )}
             </div>
         </>
