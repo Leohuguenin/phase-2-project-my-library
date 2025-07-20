@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-function BookInfo({ books }) {
+function BookInfo({ books, onAddToReadingList }) {
     const { bookId } = useParams();
     const book = books.find(b => b.id === bookId);
 
@@ -10,6 +10,7 @@ function BookInfo({ books }) {
     }
 
     const info = book.volumeInfo;
+
 
     return (
         <div className="book-info">
@@ -23,6 +24,7 @@ function BookInfo({ books }) {
                     <p><strong>Published date:</strong> {info.publishedDate}</p>
                     <p><strong>Number of pages:</strong> {info.pageCount}</p>
                     <p><strong>Category:</strong> {info.categories?.join(", ")}</p>
+                    <button onClick={() => onAddToReadingList(book)} >Add to reading list</button>
                 </div>
             </div>
         </div>

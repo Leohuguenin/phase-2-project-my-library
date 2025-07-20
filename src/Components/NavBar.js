@@ -8,7 +8,7 @@ function NavBar() {
         Home
       </NavLink>
       <NavLink exact to="/reading-list">
-        Reading List
+        Reading list
       </NavLink>
     </div>
   );

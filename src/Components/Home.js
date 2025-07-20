@@ -5,7 +5,7 @@ import BookInfo from "./BookInfo";
 import Search from "./Search";
 import Sort from "./Sort";
 
-function Home() {
+function Home({ onAddToReadingList }) {
     const [books, setBooks] = useState([]);
     const match = useRouteMatch();
     const [searchTerm, setSearchTerm] = useState("");
@@ -60,7 +60,7 @@ function Home() {
             <div className="main-content">
                 <BookList books={filteredBooks} />
                 <Route path={`${match.url}/:bookId`}>
-                    <BookInfo books={filteredBooks} />
+                    <BookInfo books={filteredBooks}  onAddToReadingList={onAddToReadingList} />
                 </Route>
             </div>
 
