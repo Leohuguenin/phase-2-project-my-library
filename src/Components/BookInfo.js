@@ -22,6 +22,7 @@ function BookInfo({ books }) {
                     <p><strong>Publisher:</strong> {info.publisher || "No publisher available."}</p>
                     <p><strong>Published date:</strong> {info.publishedDate}</p>
                     <p><strong>Number of pages:</strong> {info.pageCount}</p>
+                    <p><strong>Category:</strong> {info.categories?.join(", ")}</p>
                 </div>
             </div>
         </div>
