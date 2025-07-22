@@ -4,29 +4,34 @@ import BookList from "./BookList";
 import BookInfo from "./BookInfo";
 import Search from "./Search";
 import Sort from "./Sort";
+import NewBookForm from "./NewBookForm";
 
-function Home({ onAddToReadingList, readingList }) {
+function Home({ onAddToReadingList, readingList, customBooks, onAddCustomBook }) {
     const [books, setBooks] = useState([]);
     const match = useRouteMatch();
     const [searchTerm, setSearchTerm] = useState("");
     const [sort, setSort] = useState("All");
-    let filteredBooks = books.filter(book =>
-        book.volumeInfo.title.toLowerCase().includes(searchTerm.toLowerCase())
+    const [googleBooks, setGoogleBooks] = useState([]);
+
+    let allBooks = [...customBooks, ...googleBooks];
+
+    allBooks = allBooks.filter((b) =>
+        b.volumeInfo.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     if (sort === "Category") {
-        filteredBooks = [...filteredBooks].sort((a, b) => {
-            const categoryA = a.volumeInfo.categories?.[0] || "";
-            const categoryB = b.volumeInfo.categories?.[0] || "";
-            return categoryA.localeCompare(categoryB);
+        allBooks = [...allBooks].sort((a, b) => {
+          const A = a.volumeInfo.categories?.[0] || "";
+          const B = b.volumeInfo.categories?.[0] || "";
+          return A.localeCompare(B);
         });
-    } else if (sort === "Author") {
-        filteredBooks = [...filteredBooks].sort((a, b) => {
-            const authorA = a.volumeInfo.authors?.[0] || "";
-            const authorB = b.volumeInfo.authors?.[0] || "";
-            return authorA.localeCompare(authorB);
+      } else if (sort === "Author") {
+        allBooks = [...allBooks].sort((a, b) => {
+          const A = a.volumeInfo.authors?.[0] || "";
+          const B = b.volumeInfo.authors?.[0] || "";
+          return A.localeCompare(B);
         });
-    }
+      }
 
 
 
@@ -49,7 +54,7 @@ function Home({ onAddToReadingList, readingList }) {
         setSort(e.target.value);
     }
 
- 
+
     return (
         <div className="home-container">
             <h1>Welcome to MyLibrary</h1>
@@ -58,13 +63,14 @@ function Home({ onAddToReadingList, readingList }) {
                 <Search onSearchChange={handleSearchChange} />
                 <Sort onSortChange={handleSortChange} />
             </div>
+            <NewBookForm onAddBook={onAddCustomBook} />
             <div className="main-content">
                 <BookList books={filteredBooks} />
                 <Route path={`${match.url}/:bookId`}>
-                    <BookInfo 
-                    books={filteredBooks}
-                    onAddToReadingList={onAddToReadingList}
-                    readingList={readingList} />
+                    <BookInfo
+                        books={filteredBooks}
+                        onAddToReadingList={onAddToReadingList}
+                        readingList={readingList} />
                 </Route>
             </div>
 
