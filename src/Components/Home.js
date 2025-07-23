@@ -7,7 +7,6 @@ import Sort from "./Sort";
 import NewBookForm from "./NewBookForm";
 
 function Home({ onAddToReadingList, readingList, customBooks, onAddCustomBook }) {
-    const [books, setBooks] = useState([]);
     const match = useRouteMatch();
     const [searchTerm, setSearchTerm] = useState("");
     const [sort, setSort] = useState("All");
@@ -21,17 +20,17 @@ function Home({ onAddToReadingList, readingList, customBooks, onAddCustomBook })
 
     if (sort === "Category") {
         allBooks = [...allBooks].sort((a, b) => {
-          const A = a.volumeInfo.categories?.[0] || "";
-          const B = b.volumeInfo.categories?.[0] || "";
-          return A.localeCompare(B);
+            const A = a.volumeInfo.categories?.[0] || "";
+            const B = b.volumeInfo.categories?.[0] || "";
+            return A.localeCompare(B);
         });
-      } else if (sort === "Author") {
+    } else if (sort === "Author") {
         allBooks = [...allBooks].sort((a, b) => {
-          const A = a.volumeInfo.authors?.[0] || "";
-          const B = b.volumeInfo.authors?.[0] || "";
-          return A.localeCompare(B);
+            const A = a.volumeInfo.authors?.[0] || "";
+            const B = b.volumeInfo.authors?.[0] || "";
+            return A.localeCompare(B);
         });
-      }
+    }
 
 
 
@@ -39,7 +38,7 @@ function Home({ onAddToReadingList, readingList, customBooks, onAddCustomBook })
         fetch("https://www.googleapis.com/books/v1/volumes?q=a")
             .then(res => res.json())
             .then(data => {
-                setBooks(data.items.slice(0, 10));
+                setGoogleBooks(data.items.slice(0, 10));
             })
             .catch(err => {
                 console.error("Error fetching books:", err);
@@ -65,10 +64,10 @@ function Home({ onAddToReadingList, readingList, customBooks, onAddCustomBook })
             </div>
             <NewBookForm onAddBook={onAddCustomBook} />
             <div className="main-content">
-                <BookList books={filteredBooks} />
+                <BookList books={allBooks} />
                 <Route path={`${match.url}/:bookId`}>
                     <BookInfo
-                        books={filteredBooks}
+                        books={allBooks}
                         onAddToReadingList={onAddToReadingList}
                         readingList={readingList} />
                 </Route>

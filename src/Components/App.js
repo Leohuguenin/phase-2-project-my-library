@@ -3,23 +3,37 @@ import { Route, Switch } from "react-router-dom";
 import NavBar from "./NavBar";
 import Home from "./Home";
 import ReadingList from "./ReadingList";
+import NewBookForm from "./NewBookForm";
+
 
 
 
 
 function App() {
-  
+
   const [readingList, setReadingList] = useState([]);
+  const [customBooks, setCustomBooks] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/books")
+      .then((r) => r.json())
+      .then((data) => setCustomBooks(data))
+      .catch(console.error);
+  }, []);
+  
+  function addCustomBook(book) {
+    setCustomBooks(prev => [...prev, book]);
+  }
 
   useEffect(() => {
     const savedList = JSON.parse(localStorage.getItem("readingList")) || [];
     setReadingList(savedList);
   }, []);
-  
+
   useEffect(() => {
     localStorage.setItem("readingList", JSON.stringify(readingList));
   }, [readingList]);
-  
+
 
 
   function addToReadingList(book) {
@@ -31,17 +45,19 @@ function App() {
   function removeFromReadingList(book) {
     setReadingList(readingList.filter(item => item.id !== book.id))
   }
-  
+
   return (
     <div>
       <NavBar />
       <Switch>
-        <Route path="/books" render={() => <Home 
-        onAddToReadingList={addToReadingList} 
-        readingList={readingList}  />} />
+        <Route path="/books" render={() => <Home
+          onAddToReadingList={addToReadingList}
+          readingList={readingList} 
+          customBooks={customBooks}
+          onAddCustomBook={addCustomBook} />} />
         <Route path="/reading-list" render={() => <ReadingList
-         readingList={readingList} 
-         onRemoveFromReadingList={removeFromReadingList}/>} />
+          readingList={readingList}
+          onRemoveFromReadingList={removeFromReadingList} />} />
         <Route path="*">
           <h2>Page not found</h2>
         </Route>
