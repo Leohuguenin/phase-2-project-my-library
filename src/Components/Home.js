@@ -5,18 +5,14 @@ import BookInfo from "./BookInfo";
 import Search from "./Search";
 import Sort from "./Sort";
 import NewBookForm from "./NewBookForm";
+import fetchBooks from "../data/fetchBooks";
 
 function Home({ onAddToReadingList, readingList, customBooks, onAddCustomBook }) {
     const match = useRouteMatch();
-    const [searchTerm, setSearchTerm] = useState("");
     const [sort, setSort] = useState("All");
     const [googleBooks, setGoogleBooks] = useState([]);
 
     let allBooks = [...customBooks, ...googleBooks];
-
-    allBooks = allBooks.filter((b) =>
-        b.volumeInfo.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
 
     if (sort === "Category") {
         allBooks = [...allBooks].sort((a, b) => {
@@ -32,21 +28,16 @@ function Home({ onAddToReadingList, readingList, customBooks, onAddCustomBook })
         });
     }
 
-
-
     useEffect(() => {
-        fetch("https://www.googleapis.com/books/v1/volumes?q=a")
-            .then(res => res.json())
-            .then(data => {
-                setGoogleBooks(data.items.slice(0, 10));
-            })
-            .catch(err => {
-                console.error("Error fetching books:", err);
-            });
+        fetchBooks("a").then(books => {
+            setGoogleBooks(books);
+          });
     }, []);
 
-    function handleSearchChange(e) {
-        setSearchTerm(e.target.value);
+    function handleSearchClick(search) {
+        fetchBooks(search).then(books => {
+            setGoogleBooks(books);
+          });
     }
 
     function handleSortChange(e) {
@@ -59,10 +50,12 @@ function Home({ onAddToReadingList, readingList, customBooks, onAddCustomBook })
             <h1>Welcome to MyLibrary</h1>
             <p>Discover new books, manage your reading list, and explore your next favorite read.</p>
             <div className="search-sort-bar">
-                <Search onSearchChange={handleSearchChange} />
+                <Search onSearchClick={handleSearchClick} />
                 <Sort onSortChange={handleSortChange} />
             </div>
-            <NewBookForm onAddBook={onAddCustomBook} />
+            <div className="new-book-form">
+                <NewBookForm onAddBook={onAddCustomBook} />
+            </div>
             <div className="main-content">
                 <BookList books={allBooks} />
                 <Route path={`${match.url}/:bookId`}>
