@@ -5,15 +5,15 @@ function Search({ onSearchClick }) {
     
     
     return (
-        <div className="search-container">
-            <h4> Search books</h4>
+       <div className="search-container">
+            <h4> 📚Search books</h4>
             <input
                 type="text"
                 placeholder="Enter book title"
                 className="search-input"
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button onClick={() => onSearchClick(searchTerm)}>🔍</button>
+        <button className="btn search" onClick={() => onSearchClick(searchTerm)}>🔎</button>
         </div>
     )
 }

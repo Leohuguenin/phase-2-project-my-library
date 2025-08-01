@@ -10,7 +10,7 @@ function ReadingList({ readingList, onRemoveFromReadingList }) {
           <div key={book.id} className="reading-book">
             <BookCard book={book} />
             <button
-              className="remove-button"
+              className="btn remove-from-reading-list"
               onClick={() => onRemoveFromReadingList(book)}
             >
               Remove

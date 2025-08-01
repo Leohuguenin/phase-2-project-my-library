@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 
 
@@ -32,7 +32,7 @@ function BookInfo({ books, onAddToReadingList, readingList }) {
             {isAlreadyAdded ? (
               <p>✅ Added to Reading list</p>
             ) : (
-              <button onClick={handleAddButton}>Add to Reading List</button>
+              <button className="btn add-to-reading-list" onClick={handleAddButton}>Add to Reading List</button>
             )}
           </div>
         </div>

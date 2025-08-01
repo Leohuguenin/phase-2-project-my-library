@@ -23,10 +23,10 @@ function BookList({ books }) {
         <>
             <h2>Featured Books</h2>
             <div className="book-list">
-                <button onClick={handleBackButtonClick} >Back button</button>
+                <button className="btn back" onClick={handleBackButtonClick} >Back</button>
                 {books.slice(startIndex, endIndex).map(book => <BookCard key={book.id} book={book}/>
                 )}
-                <button onClick={handleNextButtonClick} >Next button</button>
+                <button className="btn next" onClick={handleNextButtonClick} >Next</button>
             </div>
         </>
     )

@@ -100,7 +100,7 @@ function NewBookForm({ onAddBook }) {
         onChange={handleChange}
         placeholder="Category"
       />
-      <button type="submit">Add Book</button>
+      <button className="btn add-new-book" type="submit">Add Book</button>
     </form>
   );
 }
