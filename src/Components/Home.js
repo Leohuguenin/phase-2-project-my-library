@@ -2,15 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Route, useRouteMatch } from "react-router-dom";
 import BookList from "./BookList";
 import BookInfo from "./BookInfo";
+import FromReadingList from "./FromReadingList";
 import Search from "./Search";
 import Sort from "./Sort";
-import NewBookForm from "./NewBookForm";
 import fetchBooks from "../data/fetchBooks";
 
-function Home({ onAddToReadingList, readingList, customBooks, onAddCustomBook }) {
+function Home({ onAddToReadingList, readingList, customBooks }) {
     const match = useRouteMatch();
     const [sort, setSort] = useState("All");
     const [googleBooks, setGoogleBooks] = useState([]);
+    const [isBookListVisible, setIsBookListVisible] = useState(false);
 
     let allBooks = [...customBooks, ...googleBooks];
 
@@ -38,6 +39,7 @@ function Home({ onAddToReadingList, readingList, customBooks, onAddCustomBook })
         fetchBooks(search).then(books => {
             setGoogleBooks(books);
           });
+          setIsBookListVisible(true);
     }
 
     function handleSortChange(e) {
@@ -53,11 +55,8 @@ function Home({ onAddToReadingList, readingList, customBooks, onAddCustomBook })
                 <Search onSearchClick={handleSearchClick} />
                 <Sort onSortChange={handleSortChange} />
             </div>
-            <div className="new-book-form">
-                <NewBookForm onAddBook={onAddCustomBook} />
-            </div>
             <div className="main-content">
-                <BookList books={allBooks} />
+                {isBookListVisible ? <BookList books={allBooks}/> : <FromReadingList readingList={readingList}/>}
                 <Route path={`${match.url}/:bookId`}>
                     <BookInfo
                         books={allBooks}

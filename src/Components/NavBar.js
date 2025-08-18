@@ -7,6 +7,9 @@ function NavBar() {
       <NavLink exact to="/books">
         Home
       </NavLink>
+      <NavLink exact to="/new-book-form">
+        Add new book
+      </NavLink>
       <NavLink exact to="/reading-list">
         Reading list
       </NavLink>

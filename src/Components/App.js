@@ -20,7 +20,7 @@ function App() {
       .then((data) => setCustomBooks(data))
       .catch(console.error);
   }, []);
-  
+
   function addCustomBook(book) {
     setCustomBooks(prev => [...prev, book]);
   }
@@ -52,12 +52,16 @@ function App() {
       <Switch>
         <Route path="/books" render={() => <Home
           onAddToReadingList={addToReadingList}
-          readingList={readingList} 
+          readingList={readingList}
           customBooks={customBooks}
           onAddCustomBook={addCustomBook} />} />
         <Route path="/reading-list" render={() => <ReadingList
           readingList={readingList}
           onRemoveFromReadingList={removeFromReadingList} />} />
+        <Route path="/new-book-form" render={() => <NewBookForm
+          onAddBook={addCustomBook}
+          customBooks={customBooks}
+        />} />
         <Route path="*">
           <h2>Page not found</h2>
         </Route>

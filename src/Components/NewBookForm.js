@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import BookCard from "./BookCard";
 
-function NewBookForm({ onAddBook }) {
+function NewBookForm({ onAddBook, customBooks }) {
   const [formData, setFormData] = useState({
     title: "",
     authors: "",
@@ -13,7 +14,7 @@ function NewBookForm({ onAddBook }) {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setFormData((f) => ({ ...f, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   }
 
   function handleSubmit(e) {
@@ -53,6 +54,7 @@ function NewBookForm({ onAddBook }) {
   }
 
   return (
+    <>
     <form className="new-book-form" onSubmit={handleSubmit}>
       <h4>Can't find a book? Add yours:</h4>
       <input
@@ -102,7 +104,13 @@ function NewBookForm({ onAddBook }) {
       />
       <button className="btn add-new-book" type="submit">Add Book</button>
     </form>
-  );
+  <div className="added-by-you">
+    <h4>Added by you:</h4>
+    {customBooks.map((book) => <BookCard  key={book.id} book={book} />)}
+  </div>
+  </>
+ ) 
 }
+
 
 export default NewBookForm;
