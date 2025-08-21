@@ -11,7 +11,7 @@ function Home({ onAddToReadingList, readingList, customBooks }) {
     const match = useRouteMatch();
     const [sort, setSort] = useState("All");
     const [googleBooks, setGoogleBooks] = useState([]);
-    const [isBookListVisible, setIsBookListVisible] = useState(false);
+
 
     let allBooks = [...customBooks, ...googleBooks];
 
@@ -32,14 +32,13 @@ function Home({ onAddToReadingList, readingList, customBooks }) {
     useEffect(() => {
         fetchBooks("a").then(books => {
             setGoogleBooks(books);
-          });
+        });
     }, []);
 
     function handleSearchClick(search) {
         fetchBooks(search).then(books => {
             setGoogleBooks(books);
-          });
-          setIsBookListVisible(true);
+        });
     }
 
     function handleSortChange(e) {
@@ -56,7 +55,8 @@ function Home({ onAddToReadingList, readingList, customBooks }) {
                 <Sort onSortChange={handleSortChange} />
             </div>
             <div className="main-content">
-                {isBookListVisible ? <BookList books={allBooks}/> : <FromReadingList readingList={readingList}/>}
+                <FromReadingList readingList={readingList} />
+                <BookList books={allBooks} />
                 <Route path={`${match.url}/:bookId`}>
                     <BookInfo
                         books={allBooks}
