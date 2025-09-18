@@ -57,12 +57,6 @@ function Home({ onAddToReadingList, readingList, customBooks }) {
             <div className="main-content">
                 <FromReadingList readingList={readingList} />
                 <BookList books={allBooks} />
-                <Route path={`${match.url}/:bookId`}>
-                    <BookInfo
-                        books={allBooks}
-                        onAddToReadingList={onAddToReadingList}
-                        readingList={readingList} />
-                </Route>
             </div>
 
         </div>
