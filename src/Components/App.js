@@ -50,18 +50,18 @@ function App() {
     <div>
       <NavBar />
       <Switch>
-        <Route exact path="/" render={() => <Home
-          onAddToReadingList={addToReadingList}
-          readingList={readingList}
-          customBooks={customBooks}
-          onAddCustomBook={addCustomBook} />} />
-        <Route path="/reading-list" render={() => <ReadingList
+      <Route path="/reading-list" render={() => <ReadingList
           readingList={readingList}
           onRemoveFromReadingList={removeFromReadingList} />} />
         <Route path="/new-book-form" render={() => <NewBookForm
           onAddBook={addCustomBook}
           customBooks={customBooks}
         />} />
+        <Route path="/" render={() => <Home
+          onAddToReadingList={addToReadingList}
+          readingList={readingList}
+          customBooks={customBooks}
+          onAddCustomBook={addCustomBook} />} />
         <Route path="*">
           <h2>Page not found</h2>
         </Route>
