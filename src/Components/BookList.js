@@ -5,18 +5,18 @@ import BookCard from "./BookCard";
 function BookList({ books }) {
 
     const [startIndex, setStartIndex] = useState(0);
-    const [endIndex, setEndIndex] = useState(10);
+    const [endIndex, setEndIndex] = useState(4);
 
     function handleNextButtonClick() {
-        setStartIndex(startIndex + 10);
-        setEndIndex(endIndex + 10);
+        setStartIndex(startIndex + 4);
+        setEndIndex(endIndex + 4);
     }
 
 
     function handleBackButtonClick() {
         if (startIndex !== 0) {
-            setStartIndex(startIndex - 10);
-            setEndIndex(endIndex - 10);
+            setStartIndex(startIndex - 4);
+            setEndIndex(endIndex - 4);
         }
     }
     return (
