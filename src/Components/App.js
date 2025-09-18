@@ -50,7 +50,7 @@ function App() {
     <div>
       <NavBar />
       <Switch>
-        <Route path="/" render={() => <Home
+        <Route exact path="/" render={() => <Home
           onAddToReadingList={addToReadingList}
           readingList={readingList}
           customBooks={customBooks}
