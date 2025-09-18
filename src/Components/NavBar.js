@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 function NavBar() {
   return (
     <div className="navbar nav-links">
-      <NavLink exact to="/books">
+      <NavLink exact to="/">
         Home
       </NavLink>
       <NavLink exact to="/new-book-form">
