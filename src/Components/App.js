@@ -62,17 +62,6 @@ function App() {
           onAddBook={addCustomBook}
           customBooks={customBooks}
         />} />
-        <Route
-          path="/book/:bookId"
-          render={({ match }) => (
-            <BookInfo
-              books={allBooks}
-              bookId={match.params.bookId}
-              onAddToReadingList={addToReadingList}
-              readingList={readingList}
-            />
-          )}
-        />
         <Route path="*">
           <h2>Page not found</h2>
         </Route>
