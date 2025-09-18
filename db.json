@@ -1,23 +1,5 @@
 {
   "books": [
-    {
-      "id": "1755490137788",
-      "volumeInfo": {
-        "title": "sapiens",
-        "authors": [
-          "Noah Harari"
-        ],
-        "description": "A brief history of humankind",
-        "publisher": "---",
-        "publishedDate": "12/03/2020",
-        "pageCount": 2000,
-        "categories": [
-          "science "
-        ],
-        "imageLinks": {
-          "thumbnail": ""
-        }
-      }
-    }
+    
   ]
 }
