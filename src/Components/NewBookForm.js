@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import BookCard from "./BookCard";
 
+const clearFormData = {
+  title: "",
+  authors: "",
+  description: "",
+  publisher: "",
+  publishedDate: "",
+  pageCount: "",
+  category: "",
+};
+
 function NewBookForm({ onAddBook, customBooks }) {
-  const [formData, setFormData] = useState({
-    title: "",
-    authors: "",
-    description: "",
-    publisher: "",
-    publishedDate: "",
-    pageCount: "",
-    category: "",
-  });
+  const [formData, setFormData] = useState(clearFormData);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -33,24 +35,10 @@ function NewBookForm({ onAddBook, customBooks }) {
       },
     };
 
-    fetch("http://localhost:3001/books", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newBook),
-    })
-      .then((r) => r.json())
-      .then((data) => {
-        onAddBook(data);
-        setFormData({
-          title: "",
-          authors: "",
-          description: "",
-          publisher: "",
-          publishedDate: "",
-          pageCount: "",
-          category: "",
-        });
-      });
+    addNewBook(newBook).then(book => {
+      onAddBook(book);
+      setFormData(clearFormData);
+    });
   }
 
   return (

@@ -5,7 +5,7 @@ import BookInfo from "./BookInfo";
 import FromReadingList from "./FromReadingList";
 import Search from "./Search";
 import Sort from "./Sort";
-import fetchBooks from "../data/fetchBooks";
+import fetchGoogleBooks from "../data/googleAPI";
 
 function Home({ onAddToReadingList, readingList, customBooks }) {
     const match = useRouteMatch();
@@ -30,13 +30,13 @@ function Home({ onAddToReadingList, readingList, customBooks }) {
     }
 
     useEffect(() => {
-        fetchBooks("a").then(books => {
+        fetchGoogleBooks("a").then(books => {
             setGoogleBooks(books);
         });
     }, []);
 
     function handleSearchClick(search) {
-        fetchBooks(search).then(books => {
+        fetchGoogleBooks(search).then(books => {
             setGoogleBooks(books);
         });
     }

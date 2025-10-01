@@ -4,10 +4,7 @@ import NavBar from "./NavBar";
 import Home from "./Home";
 import ReadingList from "./ReadingList";
 import NewBookForm from "./NewBookForm";
-
-
-
-
+import fetchCustomBooks from "../data/customBooksAPI"
 
 function App() {
 
@@ -15,10 +12,9 @@ function App() {
   const [customBooks, setCustomBooks] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/books")
-      .then((r) => r.json())
-      .then((data) => setCustomBooks(data))
-      .catch(console.error);
+    fetchCustomBooks().then(books => {
+      setCustomBooks(books);
+    });
   }, []);
 
   function addCustomBook(book) {

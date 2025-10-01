@@ -1,4 +1,4 @@
-function fetchBooks(term) {
+function fetchGoogleBooks(term) {
     return fetch(`https://www.googleapis.com/books/v1/volumes?q=${term}`)
       .then(res => res.json())
       .then(data => {
@@ -6,9 +6,9 @@ function fetchBooks(term) {
         return Array.isArray(data.items) ? data.items : [];
       })
       .catch(err => {
-        console.error("Error fetching books:", err);
+        console.error("Error fetching google books:", err);
         return [];
       });
   }
 
-  export default fetchBooks;
+  export default fetchGoogleBooks;
