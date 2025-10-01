@@ -6,6 +6,7 @@ import FromReadingList from "./FromReadingList";
 import Search from "./Search";
 import Sort from "./Sort";
 import fetchGoogleBooks from "../data/googleBooksAPI";
+import { Switch } from "react-router-dom/cjs/react-router-dom.min";
 
 function Home({ onAddToReadingList, readingList, customBooks }) {
     const match = useRouteMatch();
@@ -57,12 +58,14 @@ function Home({ onAddToReadingList, readingList, customBooks }) {
             <div className="main-content">
                 <FromReadingList readingList={readingList} />
                 <BookList books={allBooks} />
-                <Route path={`${match.url}/:bookId`}>
-                    <BookInfo
-                        books={allBooks}
-                        onAddToReadingList={onAddToReadingList}
-                        readingList={readingList} />
-                </Route>
+                <Switch>
+                    <Route path={`${match.url}/:bookId`}>
+                        <BookInfo
+                            books={allBooks}
+                            onAddToReadingList={onAddToReadingList}
+                            readingList={readingList} />
+                    </Route>
+                </Switch>
             </div>
 
         </div>
