@@ -59,12 +59,17 @@ function Home({ onAddToReadingList, readingList, customBooks }) {
                 <FromReadingList readingList={readingList} />
                 <BookList books={allBooks} />
                 <Switch>
-                    <Route path={`${match.url}/:bookId`}>
-                        <BookInfo
-                            books={allBooks}
-                            onAddToReadingList={onAddToReadingList}
-                            readingList={readingList} />
-                    </Route>
+                    <Route
+                        path={`${match.url}/:bookId`}
+                        render={(props) => (
+                            <BookInfo
+                                {...props}
+                                books={allBooks}
+                                readingList={readingList}
+                                onAddToReadingList={onAddToReadingList}
+                            />
+                        )}
+                    />
                 </Switch>
             </div>
 
