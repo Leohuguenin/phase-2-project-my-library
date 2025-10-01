@@ -12,7 +12,7 @@ export function fetchCustomBooks() {
       });
   }
 
-export function addNewBook()  {
+export function addNewBook(newBook)  {
   return fetch(`${api_url}/books`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

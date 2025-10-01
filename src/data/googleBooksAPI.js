@@ -1,8 +1,8 @@
+const api_url = "https://www.googleapis.com";
 function fetchGoogleBooks(term) {
-    return fetch(`https://www.googleapis.com/books/v1/volumes?q=${term}`)
+    return fetch(`${api_url}/books/v1/volumes?q=${term}`)
       .then(res => res.json())
       .then(data => {
-        console.log(data.items);
         return Array.isArray(data.items) ? data.items : [];
       })
       .catch(err => {

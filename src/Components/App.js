@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 import Home from "./Home";
 import ReadingList from "./ReadingList";
 import NewBookForm from "./NewBookForm";
-import fetchCustomBooks from "../data/customBooksAPI"
+import { fetchCustomBooks } from "../data/customBooksAPI"
 
 function App() {
 

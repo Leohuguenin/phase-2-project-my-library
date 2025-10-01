@@ -5,7 +5,7 @@ import BookInfo from "./BookInfo";
 import FromReadingList from "./FromReadingList";
 import Search from "./Search";
 import Sort from "./Sort";
-import fetchGoogleBooks from "../data/googleAPI";
+import fetchGoogleBooks from "../data/googleBooksAPI";
 
 function Home({ onAddToReadingList, readingList, customBooks }) {
     const match = useRouteMatch();
