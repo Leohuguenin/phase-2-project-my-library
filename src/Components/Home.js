@@ -12,6 +12,8 @@ function Home({ onAddToReadingList, readingList, customBooks }) {
     const match = useRouteMatch();
     const [sort, setSort] = useState("All");
     const [googleBooks, setGoogleBooks] = useState([]);
+    const [selectedBook, setSelectedBook] = useState(null);
+    const [isShowBookInfo, setIsShowBookInfo] = useState(false);
 
 
     let allBooks = [...customBooks, ...googleBooks];
@@ -46,6 +48,10 @@ function Home({ onAddToReadingList, readingList, customBooks }) {
         setSort(e.target.value);
     }
 
+    function showBookInfo(book) {
+        setSelectedBook(book);
+        setIsShowBookInfo(true);
+    };
 
     return (
         <div className="home-container">
@@ -57,20 +63,13 @@ function Home({ onAddToReadingList, readingList, customBooks }) {
             </div>
             <div className="main-content">
                 <FromReadingList readingList={readingList} />
-                <BookList books={allBooks} />
-                <Switch>
-                    <Route
-                        path={`${match.url}/:bookId`}
-                        render={(props) => (
-                            <BookInfo
-                                {...props}
-                                books={allBooks}
-                                readingList={readingList}
-                                onAddToReadingList={onAddToReadingList}
-                            />
-                        )}
-                    />
-                </Switch>
+                <BookList books={allBooks} showBookInfo={showBookInfo} />
+                {isShowBookInfo &&
+                    <BookInfo
+                        book={selectedBook}
+                        readingList={readingList}
+                        onAddToReadingList={onAddToReadingList}
+                    />}
             </div>
 
         </div>

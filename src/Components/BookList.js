@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import BookCard from "./BookCard";
 
 
-function BookList({ books }) {
+function BookList({ books, showBookInfo }) {
 
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(4);
@@ -25,7 +25,7 @@ function BookList({ books }) {
 
             <div className="book-list">
                 <button className="btn back" onClick={handleBackButtonClick} >Back</button>
-                {books.slice(startIndex, endIndex).map(book => <BookCard key={book.id} book={book} />
+                {books.slice(startIndex, endIndex).map(book => <BookCard key={book.id} book={book} onBookClick={showBookInfo} />
                 )}
                 <button className="btn next" onClick={handleNextButtonClick} >Next</button>
             </div>

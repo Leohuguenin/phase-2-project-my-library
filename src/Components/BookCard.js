@@ -2,7 +2,7 @@ import React from "react";
 import { useRouteMatch } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-function BookCard({ book }) {
+function BookCard({ book, onBookClick }) {
     const match = useRouteMatch();
     return (
         <div className="book-card">
@@ -10,9 +10,9 @@ function BookCard({ book }) {
                 src={book.volumeInfo.imageLinks?.thumbnail}
                 alt={book.volumeInfo.title}
             />
-            <Link key={book.id} to={`${match.url}/${book.id}`}>
+            <div key={book.id} onClick={() => onBookClick(book)} style={{ cursor: 'pointer' }}>
                 <h4>{book.volumeInfo.title.length > 60 ? book.volumeInfo.title.slice(0, 60) + "..." : book.volumeInfo.title}</h4>
-            </Link>
+            </div>
         </div>
     );
 }

@@ -1,10 +1,7 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 
 
-function BookInfo({ books, onAddToReadingList, readingList }) {
-    const { bookId } = useParams();
-    const book = books.find(b => b.id === bookId);
+function BookInfo({ book, onAddToReadingList, readingList }) {
   
     if (!book || !book.volumeInfo) {
       return <p>Book not found or still loading...</p>;
