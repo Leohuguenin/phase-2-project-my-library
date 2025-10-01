@@ -53,7 +53,7 @@ function App() {
           onAddBook={addCustomBook}
           customBooks={customBooks}
         />} />
-        <Route path="/" exact render={() => <Home
+        <Route path="/" render={() => <Home
           onAddToReadingList={addToReadingList}
           readingList={readingList}
           customBooks={customBooks}
