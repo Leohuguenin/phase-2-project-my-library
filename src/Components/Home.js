@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Route, useRouteMatch } from "react-router-dom";
+import { useRouteMatch } from "react-router-dom";
 import BookList from "./BookList";
 import BookInfo from "./BookInfo";
 import FromReadingList from "./FromReadingList";
 import Search from "./Search";
 import Sort from "./Sort";
 import fetchGoogleBooks from "../data/googleBooksAPI";
-import { Switch } from "react-router-dom/cjs/react-router-dom.min";
 
 function Home({ onAddToReadingList, readingList, customBooks }) {
-    const match = useRouteMatch();
     const [sort, setSort] = useState("All");
     const [googleBooks, setGoogleBooks] = useState([]);
     const [selectedBook, setSelectedBook] = useState(null);

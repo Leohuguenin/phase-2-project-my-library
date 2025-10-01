@@ -1,9 +1,6 @@
 import React from "react";
-import { useRouteMatch } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 function BookCard({ book, onBookClick }) {
-    const match = useRouteMatch();
     return (
         <div className="book-card">
             <img
